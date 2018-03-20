@@ -1,0 +1,112 @@
+\expandafter\def\csname CTEX@spaceChar\endcsname{\hspace{1em}}
+\documentclass[UTF8, pdftex, notypeinfo, hyperref]{CASthesis}
+\usepackage{indentfirst} % 首行缩进
+\usepackage{amssymb,bm,mathrsfs,bbm,amscd}
+\usepackage{hepunits}
+\usepackage{caption,subcaption}
+\usepackage{multirow}
+\usepackage[hidelinks,bookmarksdepth=4]{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{lineno}
+\usepackage{pdfpages}
+\usepackage[draft]{todonotes}
+\usepackage{geometry}
+\geometry{left=3.17cm,right=3.17cm,top=2.54cm,bottom=2.54cm}
+\setlength{\marginparwidth}{0.5cm}
+% 设置图形文件的搜索路径
+\graphicspath{{chapter/}{figures/}}
+
+\usepackage{graphicx}          %设置eps转化为pdf
+\usepackage{epstopdf}          %插图使用的是eps，生成的是pdf的插图
+
+\usepackage{verbatim}          %可以使用命令注释掉大量的文字
+
+%\usepackage{subfig} 
+%\usepackage{subfigure}         %subfigure
+
+% 取消链接的颜色（黑白打印时）
+%\hypersetup{
+%    colorlinks=false,
+%}
+
+% 小节标题靠左对齐
+\CTEXsetup[format+={\flushleft}]{section}
+
+\begin{document}
+
+\iffalse
+  % 封面
+  %\maketitle
+
+  % 英文封面
+  %\makeenglishtitle
+
+  \includepdfmerge{cover.pdf, 1-2}
+%%%%%  \includepdfmerge{coversecret.pdf, 1-4}
+  \includepdfmerge{statement.pdf}                 %直接插入中文，英文的封面
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 前言部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+
+  \pagenumbering{Roman}                  %设置页脚为大写的Roman字符
+  %\setcounter{page}{0}
+ 
+
+  % 摘要
+  %\include{chapter/sub_abstract}
+
+  % 目录
+  %\tableofcontents
+  % 表格目录
+  %\listoftables
+  % 插图目录
+  %\listoffigures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 正文部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+
+  \include{chapter/chap0}
+  \include{chapter/chap1}
+  \include{chapter/chap2}
+%  \include{chapter/chap3}
+%  \include{chapter/chap4}
+%  \include{chapter/chap5}
+%  \include{chapter/chap6}
+%  \include{chapter/chap7}
+
+  % 附录
+%  \appendix
+
+  %\include{chapter/chap-req}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 附件部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+%  \fancyfoot[LE,RO]{\small ~\thepage~}          %页脚为阿拉伯数字的页码，偶数页左端对齐，奇数页右端对齐
+
+  % 参考文献
+  % 使用 BibTeX
+  \bibliography{tex}
+  \nocite{*}
+  % 不使用 BibTeX
+  % \include{chapter/bib}
+
+  % 发表文章目录
+%  \include{chapter/pub}
+
+  % 个人简历
+  %\include{chapter/resume}
+
+  % 致谢
+  %\include{chapter/thanks}
+
+
+\end{document}

@@ -1,0 +1,345 @@
+% !TeX root = ../main.tex
+% !TEX root = ../main.tex
+% -*- root: ../main.tex -*-
+% -*- program: pdflatex -*-
+\chapter{离线刻度算法软件的实现}
+\section{软件平台}
+论文第二章简要的介绍了~BESIII~实验的离线数据处理和分析系统。它的核心是~BOSS~\cite{liwd:2006}软件框架，以高能物理实验通用的底层软件~GAUDI~\cite{Barrand:2000}作为基础，采用~C++~作为主要程序开发语言，采用模块化，将离线数据处理和分析软件的各个部分灵活的组织起来，完成离线数据的处理任务。
+
+作为一种面向对象的语言，C++主张一切皆对象。对面向对象的支持，让开发人员可以方便的将功能模块封装成类，并且可以对类进行派生来扩展类的功能，而不影响原有功能的实现。C++具有三大特性：封装性、继承性和多态性。\cite{C++Primer}
+\begin{itemize}
+\item{封装性(Encapsulation) 
+
+    封装，是指将具体的实现功能包装和隐藏起来，让外界无法直接访问，只能通过某些特定的方式才能访问。C++把万物都视为“对象”(Object)，任何对象都具有一定的特性和行为。C++中将其特性称为“成员变量” (Member Varible)，将其行为称为“成员函数"(Member Function)，被封装的特性只能通过特定的行为去访问。}
+\item{继承
+
+     继承机制可以对类的功能进行扩展。具体就是利用已有的类通过继承机制定义新的类。这样新类中可以定义新的成员，同时拥有原有类的成员。C++中称已存在的用来派生新类的类为基类，或者为父类；派生出的新类为派生类，或者子类。
+}
+\item{多态
+
+     通过函数和运算符的重载以及虚函数的多重定义，实现一个接口下的多种算法的多态性，具体是通过父类指针的指针或者引用来实现运行时的一个动态绑定，它不同于重载的静态绑定。这个性质在飞行时间探测器的离线数据的刻度中实现了一个接口下桶部和端盖的不同算法。}
+\end{itemize}
+
+
+\section{刻度算法原理}
+\subsection{最小二乘法\cite{zhuys2006ss}}
+TOF的离线刻度中对刻度参数的求解采用的是最小二乘法方法。第三章中讲到TOF的离线刻度是通过比较测量时间$t_{mea}=t_{raw}-t_{0}-t_{cor}$~和预期时间$t_{exp}$来实现的,其中$t_{raw}$为测量的原始时间，$t_{0}$为事例起始时间。$t_{cor}$为修正项，是关于击中位置和过阈时间的函数，不妨先设为一般的函数(这也是刻度工作需要找到的合适的公式）
+\begin{equation}
+t_{cor} =\sum\limits_{i=1}^{N} P_{i}f_{i}(x)
+\end{equation}
+
+对于每一个读出电子学通道，每个读出单元定义：
+\begin{equation}
+%\begin{displaymath}
+\chi^2(readout\quad channel,readout)=\sum\limits_{event}(t_{mea}-t_{exp})^2=\sum\limits_{event}(t_{raw}-t_{0}-t_{exp}-t_{cor})^2
+%\end{displaymath}
+\end{equation}
+这里设
+\begin{equation}
+t_{raw}-t_{0}-t_{exp}=y
+\end{equation}
+
+通过分析大量的事例样本，利用最小~$\chi^2$~方法，刻度常数项可以通过~$\partial\chi^2/\partial P_{i}=0$~得到。
+具体为求解方程组
+\begin{equation}
+%\begin{displaymath}
+\sum\limits_{j=1}^{N}\sum\limits_{event}(y-\sum\limits_{i=1}^{N} P_{i}f_{i}(x))f_{j}(x)=0
+\label{eq:piandao}
+%\end{displaymath}
+\end{equation}
+\subsection{BOSS软件框架下刻度系数的求解}
+由公式~\ref{eq:piandao}得出
+\begin{equation}
+%\begin{displaymath}
+\sum\limits_{j=1}^{N}\sum\limits_{event}yf_{j}(x)=\sum\limits_{j=1}^{N}\sum\limits_{event}\sum\limits_{i=1}^{N} P_{i}f_{i}(x))f_{j}(x)
+\label{eq:piandao}
+%\end{displaymath}
+\end{equation}
+
+在BOSS软件框架下，TOF刻度流程的设计思想如论文\cite{2007hjf}中所述。刻度参数求解的做法是：定义了一个矩阵
+\begin{equation}
+F_{[i][j]}=\sum\limits_{event}f_{i}(x)f_{j}(x)
+\end{equation}
+一个N维向量
+\begin{equation}
+Y_{[i]}=\sum\limits_{event}f_{i}(x)y
+\end{equation}
+定义X为待求参数的矢量~$X=(p_{1},p_{2}...p_{N})^{T}$
+
+对应的关系为矩阵方程：F$\times$X=Y,求解问题转化为求解一个N$\times$N的矩阵F和一个向量Y。对于一个确定形式的函数，矩阵F和向量Y可以通过对所有的事例遍历叠加求出，继而可以利用矩阵方程求解出刻度参数。
+
+\section{软件实现}
+\subsection{算法的软件框架和数据类型的定义}
+参考已有的桶部和端盖闪烁体飞行时间探测器的离线刻度流程的软件框架，结合现在的~MRPC~离线数据的自身的特性，目前MRPC飞行时间探测器刻度采用的是统一的框架。对于一些接口，利用C++的多态性，采用虚函数的多重定义实现了不同的功能。现在的软件框架可以同时实现离线数据重建和刻度，也可以将重建和刻度功能分开实现。同样的，刻度软件，支持实现桶部和端盖同时刻度，或者单独刻度的功能。
+
+刻度的算法框架采用的是如下的刻度算法：
+
+\#include "GaudiKernel/Algorithm.h"
+
+\#include "GaudiKernel/NTuple.h"
+
+class tofcalgsec:public Algorithm \{
+
+  public:
+
+    \quad\quad tofcalgsec(const std::string\& name, ISvcLocator$*$ pSvcLocator);
+
+    \quad\quad    //构造公式，第一个参数指定刻度算法的名字，第二个参数用来索引该参数
+
+    \quad\quad $\sim$tofcalgsec();  //析构函数
+
+    \quad\quad StatusCode initialize();    //初始化算法
+
+    \quad\quad StatusCode beginRun();      //算法开始
+
+    \quad\quad StatusCode execute();       //算法的执行过程，处理事例循环
+
+    \quad\quad StatusCode endRun();        //算法结束
+
+    \quad\quad StatusCode finalize();      //算法末尾的处理
+
+\}；
+
+其中initialize()，beginRun()，execute()，endRun()过程实现离线数据重建的功能，finalize()函数实现离线数据的刻度功能。
+
+数据的重建和刻度采用的是统一的数据类型接口。具体的定义了三个数据类型：结构体类型rootRecord，两个类类型Record，TofDataSet。结构体类型rootRecord定义了一个事例的诸如原始的时间和过阈时间的信息，以及外推得到的击中位置信息zrhit，预期飞行时间$t_{exp}$,事例起始时间$t_{0}$等信息，这些信息定义成double型，同时定义了一些用于记录事例编号的int型数据，具体为run号，事例数号，模块号，读数条编号，读出端编号等。类Record用来保存一个事例的所有数据信息。typedef std::vector$<$Record$*$$>$ RecordSet语句定义了类型RecordSet为一组Record类型。类TofDataSet保存一组的RecordSet数据类型，同时定义了最终保存的root文件的格式。对数据格式的定义的统一保证了离线数据重建和刻度生成的数据格式的统一。
+
+\subsection{参数求解的具体实现}
+整个刻度流程采用的是模块化的结构，对桶部和端盖采用统一的数据定义模式。定义了类TofCalibManager，其中的成员函数addCalib用于定义添加需要刻度的内容，诸如桶部的时间刻度，端盖~MRPC~的时间刻度，桶部的有效速度刻度，~MRPC~的束团的刻度等。成员函数doCalibration用于完成刻度中的计算。关于类TofCalibManager的部分声明如下：
+
+class TofCalibManager\{
+
+  \quad\quad  ...
+
+  \quad\quad void addCalib( TofCalib$*$    cal\_item1, int isbarrel );
+
+  \quad\quad void addCalib( TofCalibFit$*$ cal\_item2, bool isbarrel );  //添加要刻度的项
+  
+  \quad\quad void doCalibration();                                     //
+
+\}；
+
+doCalibration函数中关于MRPC刻度的过程如下
+
+void TofCalibManager::doCalibration() \{
+
+ \quad\quad  for( unsigned int i=0; i$<$NEtf$*$NStrip; i++ ) \{
+
+ \quad\quad\quad       RecordSet$*$ etfData = m\_dataset-$>$getEtfData(i);
+
+ \quad\quad\quad\quad        if( !calib\_etf\_item.empty() ) \{
+
+ \quad\quad\quad\quad\quad       std::vector$<$TofCalib$*>$::iterator iter1 = calib\_etf\_item.begin();
+
+ \quad\quad\quad\quad\quad       for( ; iter1!=calib\_etf\_item.end(); iter1++ ) \{
+
+ \quad\quad\quad\quad\quad\quad        ($*$iter1)-$>$calculate( etfData, i );//计算矩阵F和矢量Y，然后求得参数
+
+ \quad\quad\quad\quad\quad       \}
+
+ \quad\quad\quad\quad      \}
+
+\quad\quad   \}
+
+\}
+
+类TofCalib定义了函数calculate可以用来求得刻度得到的刻度参数，关于矩阵F和矢量Y的计算的实现就是在此过程完成的；函数updateData用于完成刻度修正后的数据更新。类TofCalib的部分声明如下
+
+\#include "tofcalgsec/TofDataSet.h"
+
+\#include "CLHEP/Matrix/Matrix.h"
+
+\#include "CLHEP/Matrix/Vector.h"
+
+class TofCalib\{
+
+ public:
+
+\quad  TofCalib( const int npar ):Npar(npar) \{  //量npar表示刻度公式的项数
+
+\quad\quad    F = HepMatrix(Npar,Npar,0);
+
+\quad\quad    Y = HepVector(Npar,0);
+
+\quad\quad    X = HepVector(Npar,0);
+
+\quad\quad    funcs = HepVector(Npar,0);
+
+\quad  \}
+
+ public:
+
+\quad  virtual void calculate( RecordSet$*$\& data, unsigned int icounter ); //求刻度参数
+
+\quad virtual void updateData( RecordSet$*$\& data ) = 0;   //刻度后更新数据
+
+ protected:
+
+\quad  virtual void calculate\_funcs(const Record$*$ r) = 0;           //对于给定的事例，计算公式各项的值，可重载
+
+\quad  virtual void calculate\_y(const Record$*$ r) = 0;               //对于给定的事例，计算y的值，可重载        
+
+ protected:
+
+\quad  HepMatrix F;                    //N$\times$N矩阵
+
+\quad  HepVector X;                    //需要求得的参数
+
+\quad  HepVector Y;                    //N维矢量
+
+\quad  HepVector funcs;                //函数
+
+\};
+
+具体的矩阵和参数的求解过程都在函数calculate中实现。对于矩阵F和矢量Y采用的是逐事例遍历叠加得到。具体实现如下：
+
+void TofCalib::calculate( RecordSet$*\&$ data, unsigned int icounter ) \{
+
+\quad std::vector$<$Record$*$$>$::iterator iter = data-$>$begin();
+
+\quad\quad    for( ; iter!=data-$>$end(); iter++ ) \{
+
+\quad\quad\quad      calculate\_funcs( ($*$iter) );
+
+\quad\quad\quad      for( int i=0; i$<$F.num\_col(); i++ ) \{
+
+\quad\quad\quad\quad       for( int j=0; j$<$F.num\_col(); j++ ) \{
+
+\quad\quad\quad\quad\quad          F[i][j]+=funcs[i]$*$funcs[j];//遍历事例，并叠加到矩阵F上
+
+\quad\quad\quad\quad        \}
+
+\quad\quad\quad      \}
+
+\quad\quad\quad      calculate\_y( ($*$iter) );
+
+\quad\quad\quad      for( int k=0; k$<$Y.num\_row(); k++ ) \{
+
+\quad\quad\quad\quad        Y[k]+=y$*$funcs[k];//遍历事例，求矢量Y
+
+\quad\quad\quad      \}
+
+\quad\quad\quad   X = (qr\_solve(F,Y));
+
+\}
+
+函数calculate\_funcs，calculate\_y都定位为虚函数，便于对于不同的刻度内容重载出不同的刻度公式。
+
+以MRPC双端刻度为例，介绍如何构造公式并利用上述基类重载出新的类
+
+\#include "tofcalgsec/TofCalib.h"
+
+const int nEtfCombine = 7;   //表示刻度公式参数的数目
+
+class calib\_etf\_combine:public TofCalib \{
+
+ public:
+
+\quad  calib\_etf\_combine():TofCalib( nEtfCombine ) \{  //函数参数是刻度公式的参数的数目
+
+\quad\quad    m\_name = string("calib\_etf\_combine");
+
+\quad  \}
+
+\quad  void calculate\_funcs( const Record* r ) \{                  //取出用于计算各个函数量的数据
+
+\quad\quad    double q = ( r-$>$qleft() + r-$>$qright() )/2.0;      //其中q取值是两端过阈时间的平均值
+
+\quad\quad    double z = (r-$>$tleft() - r-$>$tright() )/2.0;       //z取值是两端时间差的一半
+
+\quad\quad    if( q$<$0.0 ) \{
+
+\quad\quad\quad     for( int i=0; i$<$nEtfCombine; i++ ) \{
+
+\quad\quad\quad\quad        funcs[i] = 1.0;
+
+\quad\quad\quad      \}
+
+\quad\quad    \}
+
+\quad\quad    else \{
+
+\quad\quad\quad      funcs[0] = 1.0;//刻度公式的各个项，这也是刻度需要寻找的公式项
+
+\quad\quad\quad      funcs[1] = 1.0/sqrt(q);
+
+\quad\quad\quad      funcs[2] = 1.0/q;
+
+\quad\quad\quad      funcs[3] = z;
+
+\quad\quad\quad      funcs[4] = z*z;
+
+\quad\quad\quad      funcs[5] = z*z*z;
+
+\quad\quad\quad      funcs[6] = z*z*z*z;
+
+\quad\quad    \}
+
+\quad\quad    return;
+
+\quad\quad  \}
+
+\quad  void calculate\_y(const Record$*$ r) \{
+
+\quad\quad    y = ( r-$>$tleft() + r-$>$tright() )/2.0 - r-$>$texp();//取出用于计算y值的数据，这里选取的是两端时间的均值减去预期时间
+
+\quad\quad    return;
+
+\quad  \}
+
+\quad  void updateData( RecordSet$*$\& data ) \{//用于更新刻度修正后的数据
+
+\quad\quad    if( data-$>$size() $>$ 0 ) \{
+
+\quad\quad\quad      std::vector$<$Record$*>$::iterator iter = data-$>$begin();
+
+\quad\quad\quad      for( ; iter!=data-$>$end(); iter++ ) \{
+
+\quad\quad\quad\quad        calculate\_funcs( ($*$iter) );
+
+\quad\quad\quad\quad        double tcorr = 0.0;
+
+\quad\quad\quad\quad        for( int i=0; i$<$X.num\_row(); i++ ) \{
+
+\quad\quad\quad\quad\quad          tcorr += X[i]$*$funcs[i];
+
+\quad\quad\quad\quad        \}
+
+\quad\quad\quad\quad        ($*$iter)-$>$setT0( ( ($*$iter)-$>$tleft() + ($*$iter)-$>$tright() )/2.0 - tcorr - ($*$iter)-$>$texp() );
+
+\quad\quad\quad      \}
+
+\quad\quad    \}
+
+    return;
+
+\quad  \}
+  
+\};
+
+整个软件框架采用统一定义的数据类型，对于桶部闪烁体探测器和端盖~MRPC~飞行时间探测器的时间刻度采用统一的类结构和成员函数。利用C++的模块化和多态性，关于不同的刻度内容的区别在于一些具体过程的实现有所不同。整个软件框架运行稳定，具有很强的扩展性，可以方便的添加其它的刻度内容，只需要派生出一个具体的派生类即可，不需要对框架的整体做大的修改。关于刻度公式，在未来的研究中如果有其它更好的公式形式，也只需要将对应的头文件中的刻度公式的数目和刻度公式的具体形式做出修正，对于框架整体不需要做调整。
+
+\section{结果}
+在root环境下，利用研究得到的刻度公式对相应的头文件做出修改，生成刻度软件的测试版本，采用2015年5月24日到30日这一周的离线真实数据，选用Bhabha事例为刻度样本进行刻度。并采用编写好的检查脚本对刻度得到的诸如刻度参数的稳定性，以及刻度结果得到的时间分辨的稳定性进行分析，具体讨论在第六章刻度公式的适用性的研究中。结果表示研究的刻度公式稳定性良好。软件运行正常。鉴于BESIII实验中原始数据的本底情况对于不同的取数日期有很大的差别，新的刻度公式和新的刻度算法的软件版本需要在以后的日常刻度工作中更加完善。
+
+\section{总结}
+本章节首先介绍了~MRPC~离线数据刻度软件的原理。求解刻度公式中刻度项的参数采用的是最小二乘法的原理。在软件中具体的做法是将刻度参数的求解转化为对矩阵方程：F$\times$X=Y的求解上。对于一个确定形式的函数，矩阵F和向量Y可以通过对所有的事例遍历叠加求出，然后利用矩阵方程可以求出刻度参数X。接下来介绍了求解刻度参数的软件构架。对于刻度和重建采用统一的数据类型，利用C++的封装和多态性，将不同刻度内容的具体实现封装起来，对用户而言，采用相同的接口，在对刻度公式的研究中只需要对程序的部分头文件进行一定的修改即可。利用软件测试版本对离线数据进行刻度，得到的刻度参数和时间分辨随不同模块具有较高的稳定性，软件对于~MRPC~不同模块的刻度显示出良好的稳定性。
+
+\begin{comment}
+std::string m\_calibItem=“0000111111101”
+//              0    1     2     3  *  4     5     6     7     8      *    9     10         11       12
+
+// Endcap(Scin) veff atten sigma time                        Endcap (MRPC) veff  time/data  time/mc  bunch
+
+//                              Barrel veff  atten sigma time  bunch3/4
+
+指定刻度的内容：其中前4项指的是原来端盖的闪烁体的刻度；中间5项为桶部闪烁体的刻度，后面4项为MRPC的刻度：分别对应有效速度的刻度；数据时间的刻度；模拟时间的刻度，以及束团的刻度。
+\end{comment}
+
+
+
+
+
+
+
+

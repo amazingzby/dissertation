@@ -1,0 +1,16 @@
+\let \CTEX@spaceChar \relax 
+\contentsline {chapter}{目录}{I}{chapter*.1}
+\contentsline {chapter}{\numberline {第一章\hspace {.3em}}前言}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}粒子物理}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}环形正负电子对撞机\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces (CEPC)\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces }{2}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}CEPC提出背景}{2}{subsection.1.2.1}
+\contentsline {section}{\numberline {1.3}CEPC喷注味道鉴别}{3}{section.1.3}
+\contentsline {section}{\numberline {1.4}CEPC喷注味道鉴别}{3}{section.1.4}
+\contentsline {section}{\numberline {1.5}机器学习分类器的性能度量}{3}{section.1.5}
+\contentsline {chapter}{\numberline {第二章\hspace {.3em}}基于神经网络算法的喷注味道鉴别}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}神经元模型}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}神经元模型}{6}{section.2.2}
+\contentsline {section}{\numberline {2.3}结果分析}{6}{section.2.3}
+\contentsline {chapter}{参考文献}{9}{chapter*.10}
+\contentsline {chapter}{简\CTEX@spaceChar \CTEX@spaceChar 历}{13}{chapter*.11}
+\contentsline {chapter}{致\CTEX@spaceChar \CTEX@spaceChar 谢}{15}{chapter*.12}

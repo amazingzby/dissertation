@@ -1,0 +1,46 @@
+% !TeX root = ../main.tex
+% !TEX root = ../main.tex
+% -*- root: ../main.tex -*-
+% -*- program: pdflatex -*-
+
+\begin{abstract}
+北京谱仪（BESIII）的物理目标是对~$\tau$-粲（c）物理进行高精度的实验测量并寻找新物理。在较大的动量范围内很好地鉴别区分各种带电粒子是~BESIII~探测器设计的要求。BESIII~探测器的粒子鉴别系统主要由主漂移室（MDC）的~dE/dx~和飞行时间探测器（TOF）组成。飞行时间探测器的主要物理目标是粒子鉴别（PID），粒子鉴别能力的大小由相同动量不同种类粒子的飞行时间差和时间分辨决定。升级改造前的端盖飞行时间探测器采用塑料闪烁体直接耦合光电倍增管的方案，对于~$\pi$~介子，时间分辨达到~138~ps，已经不能满足~BESIII~实验高精度测量的需要。2015~年~10~月，BESIII~实验完成了端盖~TOF~的升级改造，用时间分辨性能更好的多气隙电阻性板室（MRPC）替代了原来的闪烁体，新的探测器参与了~2015-2016~运行取数。对~MRPC~端盖~TOF~离线数据刻度算法进行研究，并开发相关的软件，通过消除原始测量时间随粒子击中位置和过阈时间（Time over Threshold，TOT）的游动，进一步提高粒子鉴别能力，对实现~BESIII~高精度测量的物理目标是十分重要和不可或缺的。
+
+国际上，相对论重离子对撞机（RHIC）上的~STAR~实验和大型强子对撞机（LHC）上的~ALICE~实验都采用了~MRPC~作为飞行时间探测器，结合他们各自的特点，分别采用多次样条插值和多项式拟合方法进行探测器刻度。
+
+MRPC~端盖~TOF~的离线刻度算法软件基于~BESIII~离线数据处理和分析软件平台（BOSS）。利用~BESIII~实验获得的真实数据，通过在线事例分类得到~Bhabha~事例做为刻度样本，对刻度算法进行了研究。研究对测量时间随带电粒子击中读出条位置，过阈时间的变化关系，以及他们之间的关联进行了分析。论文首先利用多次样条插值方法构造刻度算法，对原始测量时间随过阈时间的复杂的依赖关系进行了刻度，研究发现由于信号反射的存在，这种刻度方法的效果并不理想。通过对过阈时间的击中位置依赖关系的分析，揭示了信号在读出条内的反射造成~TOT~多峰的形成机制。然后在构造刻度公式方法中，首先对击中位置进行了刻度，这个过程同时也消除了过阈时间对击中位置的依赖，然后再对时间-幅度的关系进行刻度，收到了良好的效果，单条时间分辨达到~53.5~ps。论文还对刻度公式的适用性问题，以及刻度算法中过阈时间和击中位置的关联性进行了讨论。最后，论文介绍了离线刻度算法软件的实现。
+
+利用~BESIII~获取的~Bhabha~事例样本，对升级改造后的~MRPC~端盖~TOF~的离线数据刻度算法进行了研究，确定了刻度的流程，构造了合理的刻度公式，完成了相关软件的开发。离线刻度的结果优于探测器硬件设计指标，新的刻度算法将会对~BESIII~获得高精度的测量结果产生积极的促进作用。
+
+\keywords{离线刻度，多次样条插值，多气隙电阻性板室，飞行时间探测器，北京谱仪}
+\end{abstract}
+
+\begin{englishabstract}
+%北京谱仪（BESIII）的物理目标是对tau-粲（c）物理进行高精度的实验测量并寻找新
+Physics goal of BESIII are the tau-c physics in experimental measurement with high precision and searching new physics.
+%物理。在较大的动量范围内很好地鉴别区分各种带电粒子是BESIII探测器设计的要求。
+In a large range of momentum, it is required to identify all species of charged tracks weel in design of BESIII detector.
+%BESIII探测器的粒子鉴别系统主要由主漂移室（MDC）的dE/dx和飞行时间探测器
+The particle identification system of BESIII detector consists of Main Drift Chamber(MDC) which is providing the measurement of dE/dx and Time of Flight Detector(TOF).
+%（TOF）组成。飞行时间探测器的主要物理目标是粒子鉴别（PID），粒子鉴别能力的大小由相同动量不同种类粒子的飞行时间差和时间分辨决定。升级改造前的端盖飞行时间探
+The main physical goal of TOF is to implement the Particle Identification(PID), and PID capability is determined by the different values of the time of flight for different species of particles with the same momentum and the time resolution.
+%测器采用塑料闪烁体直接耦合光电倍增管的方案，对于pi介子，时间分辨达到138ps，已经不能满足BESIII实验高精度测量的需%要。2015%年10月，BESIII实验完成了端盖TOF的升级改造，用时间分辨性能更好的多气隙电阻性板室（MRPC）替代了原来的闪烁体，新的%探测器参与了2015~2016运行取数。对MRPC端盖TOF离线数据刻度算法进行研
+Before the upgrade, the endcap TOF adopted the project using plastic scintillator coupled with photomultiplier tubes(PMT) directly, and the time resolution is 138ps for pions. However, it couldnot satisfied the requirement of the high precision of BESIII experimental measurement. In October, 2015, the upgraded endcap TOF have been completed in BESIII experiment. And the new endcap TOF based on MRPC which has a better time resolution to substitute plastic scintillator. This new detector technology has been participate the physical data taking in the period of the year 2015 to 2016.
+%究，通过消除原始测量时间随粒子击中位置和过阈时间（Time over Threshold，TOT）的游动，进一步提高粒子鉴别能力，对实现%BESIII高精度测量的物理目标是十分重要和不可或缺的。
+And the study of the offline data calibration algorithm and develop the relevant software for MRPC endcap TOF is eliminate the original measurement of time with the dependence of the particle hit position and the time-walk of Time over Threshold(TOT), this study further improve the capability of PID, and is important and indispensable to reach the physical goal of high precision measurement at BESIII. 
+
+%国际上，相对论重离子对撞机（RHIC）上的STAR实验和大型强子对撞机（LHC）上的ALICE实验都采用了MRPC作为飞行时间探测器，结合%他们各自的特点，分别采用多次样条插值和多项式拟合方法进行探测器刻度。
+Both the STAR experiment in RHIC and the ALICE experiment in LHC used MRPC as their TOF detector. And considering their own characters, the offline date are calibrated using spline-fit method and polynomial fitting method.
+
+%MRPC端盖TOF的离线刻度算法基于BESIII离线数据处理和分析软件平台（BOSS）。利用BESIII实验获得的真实数据，通过在线事例分类得%到Bhabha事例做为刻度样本，对刻度算法进行了研究。
+The offline data calibration algorithm of MRPC endcap TOF is based on BESIII offline data processing and analysis software(BOSS). The calibration data sample is Bhabha events of real data which is selected.
+%研究对测量时间随带电粒子击中读出条位置，过阈时间的变化关系，以及他们之间的关联进行了分析。论文首先利用多次样条插值方法构造刻度算法，对原始测量时间随过阈时间的复杂的依赖关系进行了刻度，研究发现由于信号反射的存在，这种刻度方法的效果并不理想。通过对过阈时间的击中位置依赖关系的分析，揭示了信号在读出条内的反射造成TOT多峰的形成机制。在构造刻度公式方法中，首先对击中位置进行了刻度，这个过程同时也消除了过阈时间对击中位置的依赖，然后再对时间-幅度的关系进行刻度，收到了良好的效果，时间分辨达到**ps。论文还对刻度公式的适用性问题，以及刻度算法中过阈时间和击中位置的关联性进行了讨论。
+This study analyzed the alternative relations of the measurement time changes with hitted positions and TOT of signal, and also  analyzed their the corelation between these variables. This paper first constructed a calibration algorithm by spline-fit method, and calibrated the original measurement time with the complex change of TOT. The Spline fit method is not ideal due to the presence of signal reflections found by studies. Then, the dependency of the hit position of TOT has been investigated, it explained how the reflection of the signal within the readout strips causes the formation mechanism of the TOT multimodal. In the construction of the calibration formula, the hit position has been performed first, at the same time, the hit position dependency of TOT can be eliminated. And then, correct time versus TOT, it has good effect, the time resolution reached 53.5ps in one strip. The applicability of these calibration formula and the relevance between TOT and hit position in calibration algorithm are also discussed in this paper.Finally, the paper introduces the implementation of the software of the offline calibration algorithm.    
+
+%利用BESIII获取的Bhabha事例样本，对升级改造后的MRPC端盖TOF的离线数据刻度算法进行了研究，确定了刻度的流程，构造了合理的刻度公式。离线刻度的结果优于探测器硬件设计指标，新的刻度算法将会对BESIII获得高精度的测量结果产生积极的促进作用。
+Using the Bhabha samples collected from BESIII, the offline data calibration algorithm of the upgraded MRPC endcap TOF detector has been studied, determined the process of calibration, constructed reasonable calibration formula and complete the development of relevant software. The result of offline data calibration is better than design target of the detector hardware, and the new calibration algorithm will play a positive role in getting the high precision measurement results at BESIII.
+
+
+\englishkeywords{Offline Data Calibration，Spline Fit，Multi-gap Resistive Plate Chamber, Time of Flight Counter，BESIII}
+
+\end{englishabstract}
