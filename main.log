@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.9.19)  20 MAR 2018 02:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.9.19)  21 MAR 2018 14:21
 entering extended mode
 **./main.tex
 (main.tex
@@ -1726,7 +1726,7 @@ File: UTF8.enc 2015/04/18 4.8.4
 ("F:\MiKTeX 2.9\tex\latex\cjk\UTF8\UTF8.chr"
 File: UTF8.chr 2015/04/18 4.8.4
 ) (main.aux (chapter/chap0.aux)
-(chapter/chap1.aux) (chapter/chap2.aux) (chapter/chap3.aux))
+(chapter/chap1.aux) (chapter/chap2.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
@@ -1938,7 +1938,7 @@ e 25.
 Package natbib Warning: Citation `cite3' on page 1 undefined on input line 25.
 
 
-<figures/chap0/Standard_Model_of_Elementary_Particles.pdf, id=167, 657.65701pt 
+<figures/chap0/Standard_Model_of_Elementary_Particles.pdf, id=143, 657.65701pt 
 x 493.845pt>
 File: figures/chap0/Standard_Model_of_Elementary_Particles.pdf Graphic file (ty
 pe pdf)
@@ -1980,7 +1980,7 @@ Package natbib Warning: Citation `cern4' on page 2 undefined on input line 59.
 
 Package natbib Warning: Citation `cern5' on page 2 undefined on input line 59.
 
-<figures/chap0/higgs_cms.jpg, id=266, 365.86688pt x 293.59688pt>
+<figures/chap0/higgs_cms.jpg, id=242, 365.86688pt x 293.59688pt>
 File: figures/chap0/higgs_cms.jpg Graphic file (type jpg)
 
 <use figures/chap0/higgs_cms.jpg>
@@ -1998,7 +1998,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 Package natbib Warning: Citation `zhuxuezheng' on page 3 undefined on input lin
 e 69.
 
-<figures/chap0/cepc_sppc.jpg, id=298, 582.175pt x 276.03125pt>
+<figures/chap0/cepc_sppc.jpg, id=274, 582.175pt x 276.03125pt>
 File: figures/chap0/cepc_sppc.jpg Graphic file (type jpg)
 
 <use figures/chap0/cepc_sppc.jpg>
@@ -2016,7 +2016,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 78--79
 
  []
 
-<figures/chap0/sim.png, id=309, 775.89874pt x 372.39125pt>
+<figures/chap0/sim.png, id=285, 775.89874pt x 372.39125pt>
 File: figures/chap0/sim.png Graphic file (type png)
 
 <use figures/chap0/sim.png>
@@ -2040,7 +2040,7 @@ m/m/n/12.045/30 | \C70/rm/m/n/12.045/5b � \C70/rm/m/n/12.045/4e �\OT1/cmr/m/n/
 Package natbib Warning: Citation `zhuxuezheng' on page 4 undefined on input lin
 e 89.
 
-<figures/chap0/geant4.png, id=311, 568.1225pt x 568.1225pt>
+<figures/chap0/geant4.png, id=287, 568.1225pt x 568.1225pt>
 File: figures/chap0/geant4.png Graphic file (type png)
 
 <use figures/chap0/geant4.png>
@@ -2064,14 +2064,14 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [5 <./figures/chap0/sim.png> <./figures/chap0/geant4.png>]
-<figures/chap0/vtx.jpg, id=339, 434.37282pt x 257.46187pt>
+<figures/chap0/vtx.jpg, id=315, 434.37282pt x 257.46187pt>
 File: figures/chap0/vtx.jpg Graphic file (type jpg)
 
 <use figures/chap0/vtx.jpg>
 Package pdftex.def Info: figures/chap0/vtx.jpg used on input line 113.
 (pdftex.def)             Requested size: 284.52756pt x 168.6525pt.
 
-<figures/chap0/vtxx.jpg, id=340, 438.13687pt x 264.23718pt>
+<figures/chap0/vtxx.jpg, id=316, 438.13687pt x 264.23718pt>
 File: figures/chap0/vtxx.jpg Graphic file (type jpg)
 
 <use figures/chap0/vtxx.jpg>
@@ -2085,7 +2085,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [6 <./figures/chap0/vtx.jpg> <./figures/chap0/vtxx.jpg>]
-<figures/chap0/energy.jpg, id=349, 441.90094pt x 355.3275pt>
+<figures/chap0/energy.jpg, id=325, 441.90094pt x 355.3275pt>
 File: figures/chap0/energy.jpg Graphic file (type jpg)
 
 <use figures/chap0/energy.jpg>
@@ -2096,7 +2096,7 @@ Package pdftex.def Info: figures/chap0/energy.jpg used on input line 141.
 Package natbib Warning: Citation `cite1:muon' on page 7 undefined on input line
  147.
 
-<figures/chap0/muon.jpg, id=351, 483.30562pt x 350.05782pt>
+<figures/chap0/muon.jpg, id=327, 483.30562pt x 350.05782pt>
 File: figures/chap0/muon.jpg Graphic file (type jpg)
 
 <use figures/chap0/muon.jpg>
@@ -2143,22 +2143,34 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 ]
 第二章
-<figures/chap1/model_process.png, id=389, 763.85374pt x 184.69pt>
+<figures/chap1/model_process.png, id=365, 763.85374pt x 184.69pt>
 File: figures/chap1/model_process.png Graphic file (type png)
 
 <use figures/chap1/model_process.png>
 Package pdftex.def Info: figures/chap1/model_process.png used on input line 9.
 (pdftex.def)             Requested size: 284.52756pt x 68.79358pt.
-) [11 <./figures/chap1/model_process.png>]
+
+
+Package natbib Warning: Citation `zhengzhipeng' on page 11 undefined on input l
+ine 18.
+
+[11 <./figures/chap1/model_process.png>])
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 12.64723pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12]
 \openout2 = `chapter/chap2.aux'.
 
-(chapter/chap2.tex [12
-
-
-
-]
+ (chapter/chap2.tex
 第三章
-) [13] [14
+) [13
+
+
+
+] [14
 
 
 ] (main.bbl [15
@@ -2189,75 +2201,41 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 112.
  (main.aux (chapter/chap0.aux) (chapter/chap1.aux) (chapter/chap2.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 112.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 112.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: DC8D125B915D6777F42B82822C986816;2712
-(rerunfilecheck)             After:  DCB2C038E24FC966CC7425D7B8E20C48;1649.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 49CC7EA13CFFE5ADE76B6370A504BE4B;1873.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 112.
  ) 
 Here is how much of TeX's memory you used:
- 39976 strings out of 493323
- 715100 string characters out of 3145106
- 718111 words of memory out of 3000000
- 42338 multiletter control sequences out of 15000+200000
- 613076 words of font info for 330 fonts, out of 3000000 for 9000
+ 40008 strings out of 493323
+ 715413 string characters out of 3145106
+ 715564 words of memory out of 3000000
+ 42377 multiletter control sequences out of 15000+200000
+ 613616 words of font info for 332 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,17n,79p,10516b,650s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{chapter*.24} has been referenced but does not exi
-st, replaced by a fixed one
-
-pdfTeX warning (dest): name{section.4.3} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.4.2.1} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{section.4.2} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.4.1.3} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.4.1.2} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.4.1.1} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{section.4.1} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{chapter.4} has been referenced but does not exist, 
-replaced by a fixed one
-
+<C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/s
+imkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows
+/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:
+/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simkai
+.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Font
+s/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Wind
+ows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf>
 <C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/sim
 kai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/F
-onts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/W
-indows/Fonts/simkai.ttf><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simkai.t
-tf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/
+onts/simsun.ttc><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/W
+indows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.t
+tf><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/
 simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Window
 s/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C
 :/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simka
 i.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fon
-ts/simsun.ttc><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Win
+ts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Win
 dows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf
-><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/si
-mkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/
-Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/
-Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.
-ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts
-/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windo
-ws/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><
-C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simk
-ai.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fo
-nts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/Wi
-ndows/Fonts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simsun.tt
-c><C:/Windows/Fonts/simsun.ttc
+><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/si
+mkai.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/
+Fonts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/
+Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simhei.ttf><C:/Windows/Fonts/simhei.
+ttf><C:/Windows/Fonts/simsun.ttc><C:/Windows/Fonts/simsun.ttc
 
 pdfTeX warning: pdflatex (file C:/Windows/Fonts/simsun.ttc): subfont unisongf0:
  wrong mapping: character 224 --> 0xF0E0 --> .notdef
@@ -2312,9 +2290,9 @@ b><F:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><F:/MiKTeX 2.9/fonts
 cm/cmsy8.pfb><F:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.pfb><F:/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><F:/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmtt12.pfb>
-Output written on main.pdf (17 pages, 1997036 bytes).
+Output written on main.pdf (17 pages, 2009517 bytes).
 PDF statistics:
- 1106 PDF objects out of 1200 (max. 8388607)
- 101 named destinations out of 1000 (max. 500000)
- 563 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1084 PDF objects out of 1200 (max. 8388607)
+ 94 named destinations out of 1000 (max. 500000)
+ 515 words of extra memory for PDF output out of 10000 (max. 10000000)
 
